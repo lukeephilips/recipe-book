@@ -1,0 +1,6 @@
+development:
+  adapter: postgresql
+  database: recipe_book_development
+test:
+  adapter: postgresql
+  database: recipe_book_test
