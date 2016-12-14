@@ -1,43 +1,113 @@
-<h2>Add a Recipe</h2>
 
-<form action="/recipe/new" method="post">
+
+<% if @recipe %>
+  <form action="/recipe/<%= @recipe.id %>/ingredients/new" method="post">
+    <div class="recipe_header">
+      <h2><%= @recipe.title %></h2>
+      <span><%= @recipe.cook_time %></span>
+      <span><%= @recipe.servings %></span>
+      <span><%= @recipe.rating %></span>
+      <span><%= @recipe.spice %></span>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+      <h2>Add Ingredients</h2>
+      <% if @recipe.ingredients %>
+          <% @recipe.ingredients.each do |ingredient| %>
+            <div class="recipe">
+              <ul>
+                <li><%= ingredient.name %> - <%= ingredient.lists.first.amount %> <%= ingredient.lists.first.unit %></li>
+              </ul>
+            </div>
+          <% end %>
+      <% end %>
+      <input type="text" name="add_ingredient" placeholder="Add another ingredient" class="form-control">
+
+      <select class="form-control" name="add_food_group">
+        <option>Meat</option>
+        <option>Vegetable</option>
+        <option>Fruit</option>
+        <option>Grain</option>
+        <option>Seasoning</option>
+        <option>Dairy</option>
+        <option>Misc.</option>
+      </select>
+
+      <input type="number" name="add_amount" placeholder="Add an amount" class="form-control">
+
+      <select class="form-control" name="add_units">
+        <option>Cups</option>
+        <option>Ounces</option>
+        <option>Teaspoons</option>
+        <option>Tablespoons</option>
+        <option>Pounds</option>
+        <option>Each</option>
+      </select>
+
+
+      <button type="submit" class="btn" name="ingredient_button">Add ingredient</button>
+    </form>
+  </div>
+    <div class="col-md-6">
+      <form action="/recipe/<%= @recipe.id %>/instructions/new" method="post">
+        <h2>Add instructions</h2>
+        <% if @recipe.instructions %>
+            <% @recipe.instructions.each do |instruction| %>
+              <div class="recipe">
+                <ul>
+                  <li><%= instruction.step %>: <%= instruction.description %></li>
+                </ul>
+              </div>
+            <% end %>
+        <% end %>
+        <input class="form-control" type="number" name="add_step" placeholder="Enter step number">
+        <input class="form-control" type="text" name="add_description" placeholder="Enter description">
+        <button type="submit" class="btn-primary btn">Add Instruction</button>
+      </form>
+    </div>
+  </div>
+<% else %>
+  <h2>Add a Recipe</h2>
+  <form action="/recipe/new" method="post">
+    <div class="form-group">
+      <label for="recipe_title">Enter the recipe title</label>
+      <input class="form-control" type="text" name="recipe_title">
+  </div>
   <div class="form-group">
-    <label for="recipe_title">Enter the recipe title</label>
-    <input class="form-control" type="text" name="recipe_title">
-</div>
-<div class="form-group">
-  <label for="servings">Servings</label>
-  <select class="form-control" name="servings">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-    <option>6</option>
-  </select>
-</div>
-<div class="form-group">
-  <label for="rating">Rating</label>
-  <select class="form-control" name="rating">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-  </select>
-</div>
-<div class="form-group">
-  <label for="spice">Spiciness</label>
-  <select class="form-control" name="spice">
-    <option>*</option>
-    <option>**</option>
-    <option>***</option>
-  </select>
-</div>
-<div class="form-group">
-  <label for="cook_time">Enter the cook time</label>
-  <input class="form-control" type="time" name="cook_time">
-</div>
-<!--  INSTRUCTIONS-->
-  <button type="submit" class="btn-primary btn">Add Recipe</button>
-</form>
+    <label for="servings">Servings</label>
+    <select class="form-control" name="servings">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="rating">Rating</label>
+    <select class="form-control" name="rating">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="spice">Spiciness</label>
+    <select class="form-control" name="spice">
+      <option>*</option>
+      <option>**</option>
+      <option>***</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="cook_time">Enter the cook time</label>
+    <input class="form-control" type="time" name="cook_time">
+  </div>
+  <!--  INSTRUCTIONS-->
+    <button type="submit" class="btn-primary btn" name="recipe_button">Add Recipe</button>
+  </form>
+<% end %>

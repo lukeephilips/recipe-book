@@ -16,9 +16,16 @@ describe(Ingredient) do
     end
     it('returns all recipes an ingredient is in if another is added') do
       @new_ingredient.update({:recipe_ids => [@new_recipe.id()]})
-      another_recipe = Recipe.create(:title => 'pasta primavera')
+      another_recipe = Recipe.create(:title => 'pasta primavera', :cook_time => '00:30:00', :servings => 5, :spice => 0, :rating => 1)
       @new_ingredient.recipes.push(another_recipe)
       expect(@new_ingredient.recipes).to(eq([@new_recipe, another_recipe]))
+    end
+  end
+
+  describe('#save') do
+    it('validates that the ingredient name is unique') do
+      test_ingredient = Ingredient.new(:name => 'broccoli', :food_group => 'vegetable')
+      expect(test_ingredient.save()).to(eq(false))
     end
   end
 end

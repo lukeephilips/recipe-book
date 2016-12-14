@@ -1,0 +1,11 @@
+<h2> <%= @recipe.title %></h2>
+
+<% if @recipe.ingredients%>
+    <% @recipe.ingredients.each do |ingredient| %>
+      <div class="recipe">
+        <ul>
+          <li><%= ingredient.name %> </li>
+        </ul>
+      </div>
+    <% end %>
+<% end %>
