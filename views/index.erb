@@ -1,0 +1,12 @@
+<h3>My precious recipes passed down for generations</h3>
+
+<% if @recipes %>
+  <% @recipes.each do |recipe| %>
+    <div class="recipe">
+      <h3><a href="/recipe/<%= recipe.id %>"><%= recipe.title%></a></h3>
+      <p><%= recipe.rating %></p>
+    </div>
+  <% end %>
+<% end %>
+
+<a class="btn-primary btn" href="/recipe/new">Add a recipe</a>
