@@ -3,11 +3,14 @@
   <span>Cook time: <%= @recipe.cook_time %></span>
   <span>Servings: <%= @recipe.servings %></span>
   <span>Rating: <%= @recipe.rating %></span>
-  <span>Spiceness level: <%= @recipe.spice %></span>
+  <span>Spiceness level: <% @recipe.spice.times do |img| %>
+      <img src="/img/pepper.png" alt="pepper" class="pepper"/>
+    <% end %>
+  </span>
 </div>
 
 <% if @recipe.lists%>
-<h3>Ingredients</h3>
+  <h3>Ingredients</h3>
     <% @recipe.lists.each do |list| %>
       <div class="recipe">
         <ul>
@@ -17,7 +20,7 @@
     <% end %>
 <% end %>
 <% if @recipe.instructions%>
-<h3>Instructions</h3>
+  <h3>Instructions</h3>
     <% @recipe.instructions.each do |instruction| %>
       <div class="recipe">
         <ul>

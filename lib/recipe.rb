@@ -7,4 +7,5 @@ class Recipe < ActiveRecord::Base
 
   validates :title, :servings, :rating, :spice, :cook_time, presence: true
   validates :title, uniqueness: true
+
 end
