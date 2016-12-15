@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-6">
+  <h2>Add Tags</h2>
+  <% if @tags %>
+    <% @tags.each do |tag| %>
+      <div class="tag">
+        <h3><a href="/tag/<%= tag.id %>"><%= tag.name%></a></h3>
+        <p>Category: <%= tag.category %></p>
+      </div>
+    <% end %>
+  <% end %>
+  <label for="add_tag_name">Enter the tage name below:</label>
+  <input type="text" name="add_tag_name" placeholder="Add a tag" class="form-control">
+
+  <select class="form-control" name="add_tag_category">
+    <option>Meal Type</option>
+    <option>Ingredient</option>
+    <option>Diet & Health</option>
+    <option>Dish Type</option>
+    <option>Cooking Style</option>
+    <option>World Cuisine</option>
+    <option>Special</option>
+  </select>
+
+  <button type="submit" class="btn" name="ingredient_button">Add ingredient</button>
+</form>
+</div>
+</div>
