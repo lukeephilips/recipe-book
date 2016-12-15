@@ -12,16 +12,16 @@
     <div class="row">
       <div class="col-md-6">
         <h2>Ingredients</h2>
-        <% if @recipe.ingredients %>
-          <% @recipe.ingredients.each do |ingredient| %>
+        <% if @recipe.lists %>
+          <% @recipe.lists.each do |list| %>
             <div class="recipe row">
               <ul>
                 <div class="col-md-4">
-                  <li><%= ingredient.name %> - <%= ingredient.lists.first.amount %> <%= ingredient.lists.first.unit %>
+                  <li><%= list.ingredient.name %> - <%= list.amount %> <%= list.unit %>
                   </li>
                 </div>
                 <div class="col-md-3">
-                  <a class="btn btn-warning btn-xs"href="/recipe/<%= @recipe.id %>/ingredients/<%= ingredient.lists[0].id%>/edit">Edit</a><a class="btn btn-danger btn-xs"href="/recipe/<%= @recipe.id %>/ingredients/<%= ingredient.lists[0].id%>/delete">Delete</a>
+                  <a class="btn btn-warning btn-xs"href="/recipe/<%= @recipe.id %>/ingredients/<%= list.id%>/edit">Edit</a><a class="btn btn-danger btn-xs"href="/recipe/<%= @recipe.id %>/ingredients/<%= list.id%>/delete">Delete</a>
                 </div>
               </ul>
             </div>

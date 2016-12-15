@@ -4,6 +4,7 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file}
 
 get '/' do
   @recipes = Recipe.all
+  @ingredients = Ingredient.all.order(:food_group)
   erb(:index)
 end
 
@@ -30,7 +31,7 @@ get '/recipe/:id/ingredients/:list_id/delete' do
   @recipe = Recipe.find(params['id'])
   list = List.find(params['list_id'])
 
-  if list.destroy
+  if list.delete
     redirect "/recipe/#{@recipe.id}/edit"
   else
     erb(:error)
