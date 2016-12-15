@@ -29,13 +29,28 @@ end
 get '/recipe/:id/ingredients/:list_id/delete' do
   @recipe = Recipe.find(params['id'])
   list = List.find(params['list_id'])
-  # binding.pry
 
   if list.destroy
     redirect "/recipe/#{@recipe.id}/edit"
   else
     erb(:error)
   end
+end
+
+get '/recipe/:id/instructions/:instruction_id/edit' do
+  # binding.pry
+  @recipe = Recipe.find(params['id'])
+  @edit_instruction = Instruction.find(params['instruction_id'])
+  erb(:edit_instructions)
+end
+
+patch '/recipe/:id/instructions/:instruction_id/edit' do
+  # binding.pry
+  @recipe = Recipe.find(params['id'])
+  instruction = Instruction.find(params['instruction_id'])
+  instruction.update(:step => params['edit_step'], :description => params['edit_description'])
+  redirect "/recipe/#{@recipe.id}/edit"
+  erb(:edit_instructions)
 end
 
 post '/recipe/:id/instructions/new' do

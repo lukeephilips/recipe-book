@@ -1,0 +1,24 @@
+<form action="#" method="post">
+  <h5>Edit this step of the instructions by replacing the content in the text boxes</h5>
+  <input type="hidden" name="_method" value="patch">
+  <% @recipe.instructions.each do |instruction| %>
+    <div class="row">
+      <% if instruction.id == @edit_instruction.id %>
+      <div class="col-md-3">
+        <input type="text" name="edit_step" value="<%= instruction.step %>" class="form-control">
+      </div>
+      <div class="col-md-9">
+        <input type="text" name="edit_description" value="<%= instruction.description %>" class="form-control">
+      </div>
+      <% else %>
+      <div class="col-md-3">
+        Step: <%= instruction.step %>
+      </div>
+      <div class="col-md-9">
+          <%= instruction.description %>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+  <button type="submit" class="btn">Submit</button>
+</form>
