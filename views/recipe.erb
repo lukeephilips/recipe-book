@@ -1,15 +1,15 @@
-<div class="recipe_header">
-  <h2><%= @recipe.title %></h2>
-  <span>Cook time: <%= @recipe.cook_time %></span>
-  <span>Servings: <%= @recipe.servings %></span>
-  <span>Rating: <%= @recipe.rating %></span>
-  <span>Spiceness level: <% @recipe.spice.times do |img| %>
-      <img src="/img/pepper.png" alt="pepper" class="pepper"/>
-    <% end %>
-  </span>
-</div><br>
 <div class="panel panel-default">
   <div class="panel-body">
+    <div class="recipe_header">
+      <h1><%= @recipe.title %></h1>
+      <span><b>Cook time:</b> <%= @recipe.cook_time %>,</span>
+      <span><b>Servings:</b> <%= @recipe.servings %>,</span>
+      <span><b>Rating:</b> <%= @recipe.rating %>,</span>
+      <span><b>Spiceness level:</b> <% @recipe.spice.times do |img| %>
+          <img src="/img/pepper.png" alt="pepper" class="pepper"/>
+        <% end %>
+      </span>
+    </div><br>
     <% if @recipe.lists%>
     <h3>Ingredients</h3><hr>
     <% @recipe.lists.each do |list| %>
