@@ -37,7 +37,7 @@
     <h4>Tags</h4>
     <div class="recipe">
     <% @recipe.tags.each do |tag| %>
-        <span><%= tag.name %> - <%= tag.category %></span>
+        <span><%= tag.name %> - <%= tag.category %>, </span>
     <% end %>
   </div>
 
