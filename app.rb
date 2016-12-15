@@ -29,7 +29,8 @@ end
 get '/recipe/:id/ingredients/:list_id/delete' do
   @recipe = Recipe.find(params['id'])
   list = List.find(params['list_id'])
-
+  # ingredient = Ingredient.find(list.ingredient_id)
+  # ingredient.destroy
   if list.destroy
     redirect "/recipe/#{@recipe.id}/edit"
   else
