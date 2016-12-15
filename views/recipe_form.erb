@@ -30,45 +30,52 @@
           </div>
         <% end %>
       <% end %>
-      <input type="text" name="add_ingredient" placeholder="Add another ingredient" class="form-control">
 
-      <select class="form-control" name="add_food_group">
-        <option>Meat</option>
-        <option>Vegetable</option>
-        <option>Fruit</option>
-        <option>Grain</option>
-        <option>Seasoning</option>
-        <option>Dairy</option>
-        <option>Misc.</option>
-      </select>
-
-      <input type="number" name="add_amount" placeholder="Add an amount" class="form-control">
-
-      <select class="form-control" name="add_units">
-        <option>Cups</option>
-        <option>Ounces</option>
-        <option>Teaspoons</option>
-        <option>Tablespoons</option>
-        <option>Pounds</option>
-        <option>Each</option>
-      </select>
-
-
+      <div class="input-group">
+        <input type="text" name="add_ingredient" placeholder="Add another ingredient" class="form-control">
+        <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
+        <select class="form-control select" name="add_food_group">
+          <option>Meat</option>
+          <option>Vegetable</option>
+          <option>Fruit</option>
+          <option>Grain</option>
+          <option>Seasoning</option>
+          <option>Dairy</option>
+          <option>Misc.</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <input type="number" name="add_amount" placeholder="Add an amount" class="form-control">
+        <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
+        <select class="form-control select" name="add_units">
+          <option>Cups</option>
+          <option>Ounces</option>
+          <option>Teaspoons</option>
+          <option>Tablespoons</option>
+          <option>Pounds</option>
+          <option>Each</option>
+        </select>
+      </div>
       <button type="submit" class="btn" name="ingredient_button">Add ingredient</button>
     </form>
   </div>
     <div class="col-md-6">
-      <form action="/recipe/<%= @recipe.id %>/instructions/new" method="post">
         <h2>Add instructions</h2>
         <% if @recipe.instructions %>
+          <ul>
             <% @recipe.instructions.each do |instruction| %>
-              <div class="recipe">
-                <ul>
-                  <li><%= instruction.step %>: <%= instruction.description %></li>
-                </ul>
+              <div class="row">
+                <div class="col-md-4">
+                    <li><%= instruction.step %>: <%= instruction.description %></li>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-warning btn-xs"href="/recipe/<%= @recipe.id %>/instructions/<%= instruction.id%>/edit">Edit</a>
+                </div>
               </div>
             <% end %>
+          </ul>
         <% end %>
+        <form action="/recipe/<%= @recipe.id %>/instructions/new" method="post">
         <input class="form-control" type="number" name="add_step" placeholder="Enter step number">
         <input class="form-control" type="text" name="add_description" placeholder="Enter description">
         <button type="submit" class="btn-primary btn">Add Instruction</button>

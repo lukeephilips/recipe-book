@@ -1,3 +1,6 @@
 .pepper {
   height: 30px;
 }
+select.select {
+    min-width: 120px;
+}
