@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-md-6">
+  <h2>Current Tags</h2>
+  <% if @tags.any? %>
+    <% @tags.each do |tag| %>
+      <div class="tag">
+        <div class="row">
+          <div class="col-md-8">
+            <h3><a href="/tag/<%= tag.id %>"><%= tag.name%></a></h3>
+            <p>Category: <%= tag.category %></p>
+          </div>
+          <div class="col-md-2">
+            <a class="btn btn-warning btn-sm"href="/tag/edit/<%= tag.id() %>">Edit</a>
+          </div>
+          <div class="col-md-2">
+            <form class="" action="/tag/new" method="post">
+              <input type="hidden" name="_method" value="delete">
+              <input type="hidden" name="tag_id" value=" <%= tag.id() %>">
+              <button class="btn btn-danger btn-sm" type="submit" name="button">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div><hr>
+    <% end %>
+    <% else %>
+   <p> There are no tags yet </p>
+  <% end %>
+  <h3>Add a tag</h3>
+  <form action="/tag/new" method="post">
+
+    <label for="add_tag_name">Enter the tage name:</label>
+    <input type="text" name="add_tag_name" placeholder="Tag Name" class="form-control"><br>
+
+    <select class="form-control" name="add_tag_category">
+      <option>Meal Type</option>
+      <option>Ingredient</option>
+      <option>Diet & Health</option>
+      <option>Dish Type</option>
+      <option>Cooking Style</option>
+      <option>World Cuisine</option>
+      <option>Special</option>
+    </select><br>
+
+    <button type="submit" class="btn btn-primary" name="ingredient_button">Add Tag</button>
+  </form>
+</div>
+
+
+  <% if @current_tag%>
+    <div class="col-md-6">
+      <h3>Edit the tag: <%= @current_tag.name() %></h3>
+      <form action="/tag/new" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <input type="hidden" name="tag_id" value=" <%= @current_tag.id %>">
+        <label for="add_tag_name">Enter the tage name:</label>
+        <input type="text" name="add_tag_name" placeholder="Tag Name" class="form-control"><br>
+
+        <select class="form-control" name="add_tag_category">
+          <option>Meal Type</option>
+          <option>Ingredient</option>
+          <option>Diet & Health</option>
+          <option>Dish Type</option>
+          <option>Cooking Style</option>
+          <option>World Cuisine</option>
+          <option>Special</option>
+        </select><br>
+
+        <button type="submit" class="btn btn-primary" name="ingredient_button">Add Tag</button>
+      </form>
+    </div>
+  <% else %>
+  <% end %>
+</div>
