@@ -21,16 +21,18 @@ end
 
 post '/recipe/:id/ingredients/new' do
   ingredient = Ingredient.create(:name => params['add_ingredient'], :food_group => params['add_food_group'])
-  @recipe = Recipe.find(params['id'])
-  List.create(:recipe_id => @recipe.id, :ingredient_id => ingredient.id, :amount => params['add_amount'], :unit => params['add_units'])
-  erb(:recipe_form)
+  if ingredient.id == nil
+    ingredient = Ingredient.find_by(name: params['add_ingredient'])
+  end
+    @recipe = Recipe.find(params['id'])
+    List.create(:recipe_id => @recipe.id, :ingredient_id => ingredient.id, :amount => params['add_amount'], :unit => params['add_units'])
+    erb(:recipe_form)
 end
 
 get '/recipe/:id/ingredients/:list_id/delete' do
   @recipe = Recipe.find(params['id'])
   list = List.find(params['list_id'])
-
-  if list.destroy
+  if list.delete
     redirect "/recipe/#{@recipe.id}/edit"
   else
     erb(:error)
@@ -38,14 +40,12 @@ get '/recipe/:id/ingredients/:list_id/delete' do
 end
 
 get '/recipe/:id/instructions/:instruction_id/edit' do
-  # binding.pry
   @recipe = Recipe.find(params['id'])
   @edit_instruction = Instruction.find(params['instruction_id'])
   erb(:edit_instructions)
 end
 
 patch '/recipe/:id/instructions/:instruction_id/edit' do
-  # binding.pry
   @recipe = Recipe.find(params['id'])
   instruction = Instruction.find(params['instruction_id'])
   instruction.update(:step => params['edit_step'], :description => params['edit_description'])
