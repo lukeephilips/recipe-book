@@ -1,7 +1,5 @@
 class Ingredient < ActiveRecord::Base
-  has_many :lists, dependent: :delete_all
-  has_many :recipes
-    through: :lists
-    dependent: :delete_all
+  has_many :lists
+  has_many :recipes, through: :lists
   validates :name, uniqueness: true
 end
