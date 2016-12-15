@@ -8,25 +8,32 @@
     <% end %>
   </span>
 </div>
-
-<% if @recipe.lists%>
-  <h3>Ingredients</h3>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <% if @recipe.lists%>
+    <h3>Ingredients</h3><hr>
     <% @recipe.lists.each do |list| %>
-      <div class="recipe">
-        <ul>
-          <li><%= list.ingredient.name %> - <%= list.amount %> <%= list.unit %></li>
-        </ul>
-      </div>
+    <div class="recipe">
+      <ul>
+        <li><h4><%= list.amount %> <%= list.unit %> of <%= list.ingredient.name %><h4></li>
+      </ul>
+    </div>
     <% end %>
-<% end %>
-<% if @recipe.instructions%>
-  <h3>Instructions</h3>
+    <% end %>
+    <% if @recipe.instructions%>
+
+
+
+    <h3>Instructions</h3><hr>
     <% @recipe.instructions.each do |instruction| %>
-      <div class="recipe">
-        <ul>
-          <li><%= instruction.step %>: <%= instruction.description %></li>
-        </ul>
-      </div>
+    <div class="recipe">
+      <ol>
+        <li><h4><%= instruction.description %></h4></li>
+      </ol>
+    </div>
     <% end %>
-<% end %>
-<a href="/recipe/<%=@recipe.id %>/edit">Edit this recipe</a>
+    <% end %>
+    </div>
+  </div>
+
+<a class="btn-warning btn" href="/recipe/<%=@recipe.id %>/edit">Edit this recipe</a>

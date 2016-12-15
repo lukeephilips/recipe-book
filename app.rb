@@ -69,6 +69,46 @@ get '/recipe/:id/edit' do
   erb(:recipe_form)
 end
 
+
+get '/tag/new' do
+  @tags = Tag.all()
+  erb(:tag_form)
+end
+
+post '/tag/new' do
+  name = params['add_tag_name']
+  category = params['add_tag_category']
+  if Tag.create(:name => name, :category => category)
+    @tags = Tag.all()
+    redirect '/tag/new'
+  else
+    erb(:error)
+  end
+end
+
+delete '/tag/new' do
+  if Tag.destroy(params['tag_id'])
+    redirect '/tag/new'
+  else
+    erb(:error)
+  end
+end
+
+patch '/tag/new' do
+  @current_tag = Tag.find(params['tag_id'])
+  if @current_tag.update(:name => params['add_tag_name'], :category => params['add_tag_category'])
+    redirect '/tag/new'
+  else
+    erb(:error)
+  end
+end
+
+get '/tag/edit/:id' do
+  @tags = Tag.all()
+  @current_tag = Tag.find(params['id'])
+  erb(:tag_form)
+end
+
 get '/clear' do
   Ingredient.all.each() do |ingredient|
     ingredient.destroy()
