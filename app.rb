@@ -9,11 +9,14 @@ get '/' do
 end
 
 get '/recipe/new' do
+  @tags = Tag.all()
   erb(:recipe_form)
 end
 
 post '/recipe/new' do
   if @recipe = Recipe.create(:title => params['recipe_title'],:servings => params['servings'], :rating => params['rating'], :spice => params['spice'],:cook_time => params['cook_time'])
+    tags = params['tags']
+    @recipe.update({:tag_ids => tags})
     erb(:recipe_form)
   else
     erb(:error)

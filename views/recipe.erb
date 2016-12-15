@@ -25,14 +25,24 @@
 
 
     <h3>Instructions</h3><hr>
-    <% @recipe.instructions.each do |instruction| %>
     <div class="recipe">
       <ol>
+    <% @recipe.instructions.each do |instruction| %>
         <li><p><%= instruction.description %></p></li>
-      </ol>
+    <% end %>
+  </ol>
+</div>
+    <% end %>
+    <hr>
+    <h4>Tags</h4>
+    <div class="recipe">
+    <% @recipe.tags.each do |tag| %>
+        <span><%= tag.name %> - <%= tag.category %>, </span>
+    <% end %>
+  </div>
+
+
     </div>
-    <% end %>
-    <% end %>
     </div>
   </div>
 
