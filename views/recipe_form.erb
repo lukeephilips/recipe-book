@@ -4,23 +4,29 @@
   <form action="/recipe/<%= @recipe.id %>/ingredients/new" method="post">
     <div class="recipe_header">
       <h2><%= @recipe.title %></h2>
-      <span><%= @recipe.cook_time %></span>
-      <span><%= @recipe.servings %></span>
-      <span><%= @recipe.rating %></span>
-      <span><%= @recipe.spice %></span>
+      <span>Cook time: <%= @recipe.cook_time %></span>
+      <span>Servings: <%= @recipe.servings %></span>
+      <span>Rating: <%= @recipe.rating %></span>
+      <span>Spiceness level: <%= @recipe.spice %></span>
     </div>
 
     <div class="row">
       <div class="col-md-6">
       <h2>Add Ingredients</h2>
       <% if @recipe.ingredients %>
-          <% @recipe.ingredients.each do |ingredient| %>
-            <div class="recipe">
-              <ul>
-                <li><%= ingredient.name %> - <%= ingredient.lists.first.amount %> <%= ingredient.lists.first.unit %></li>
-              </ul>
-            </div>
-          <% end %>
+        <% @recipe.ingredients.each do |ingredient| %>
+          <div class="recipe row">
+            <ul>
+              <div class="col-md-8">
+                <li><%= ingredient.name %> - <%= ingredient.lists.first.amount %> <%= ingredient.lists.first.unit %>
+                </li>
+              </div>
+              <div class="col-md-2">
+                <a class="btn btn-danger btn-xs"href="/recipe/<%= @recipe.id %>/ingredients/<%= ingredient.lists[0].id%>/delete">Delete</a>
+              </div>
+            </ul>
+          </div>
+        <% end %>
       <% end %>
       <input type="text" name="add_ingredient" placeholder="Add another ingredient" class="form-control">
 
@@ -105,7 +111,7 @@
   </div>
   <div class="form-group">
     <label for="cook_time">Enter the cook time</label>
-    <input class="form-control" type="time" name="cook_time">
+    <input class="form-control" type="text" name="cook_time">
   </div>
   <!--  INSTRUCTIONS-->
     <button type="submit" class="btn-primary btn" name="recipe_button">Add Recipe</button>

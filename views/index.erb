@@ -4,7 +4,7 @@
   <% @recipes.each do |recipe| %>
     <div class="recipe">
       <h3><a href="/recipe/<%= recipe.id %>"><%= recipe.title%></a></h3>
-      <p><%= recipe.rating %></p>
+      <p>Rating: <%= recipe.rating %></p>
     </div>
   <% end %>
 <% end %>

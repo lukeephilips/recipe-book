@@ -26,6 +26,18 @@ post '/recipe/:id/ingredients/new' do
   erb(:recipe_form)
 end
 
+get '/recipe/:id/ingredients/:list_id/delete' do
+  @recipe = Recipe.find(params['id'])
+  list = List.find(params['list_id'])
+  # binding.pry
+
+  if list.destroy
+    redirect "/recipe/#{@recipe.id}/edit"
+  else
+    erb(:error)
+  end
+end
+
 post '/recipe/:id/instructions/new' do
   @recipe = Recipe.find(params['id'])
   @recipe.instructions.create(:step => params['add_step'], :description => params['add_description'])
@@ -35,6 +47,11 @@ end
 get '/recipe/:id' do
   @recipe = Recipe.find(params['id'])
   erb(:recipe)
+end
+
+get '/recipe/:id/edit' do
+  @recipe = Recipe.find(params['id'])
+  erb(:recipe_form)
 end
 
 get '/clear' do
