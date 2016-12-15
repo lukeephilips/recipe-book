@@ -30,30 +30,32 @@
           </div>
         <% end %>
       <% end %>
-      <input type="text" name="add_ingredient" placeholder="Add another ingredient" class="form-control">
 
-      <select class="form-control" name="add_food_group">
-        <option>Meat</option>
-        <option>Vegetable</option>
-        <option>Fruit</option>
-        <option>Grain</option>
-        <option>Seasoning</option>
-        <option>Dairy</option>
-        <option>Misc.</option>
-      </select>
-
-      <input type="number" name="add_amount" placeholder="Add an amount" class="form-control">
-
-      <select class="form-control" name="add_units">
-        <option>Cups</option>
-        <option>Ounces</option>
-        <option>Teaspoons</option>
-        <option>Tablespoons</option>
-        <option>Pounds</option>
-        <option>Each</option>
-      </select>
-
-
+      <div class="input-group">
+        <input type="text" name="add_ingredient" placeholder="Add another ingredient" class="form-control">
+        <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
+        <select class="form-control select" name="add_food_group">
+          <option>Meat</option>
+          <option>Vegetable</option>
+          <option>Fruit</option>
+          <option>Grain</option>
+          <option>Seasoning</option>
+          <option>Dairy</option>
+          <option>Misc.</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <input type="number" name="add_amount" placeholder="Add an amount" class="form-control">
+        <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
+        <select class="form-control select" name="add_units">
+          <option>Cups</option>
+          <option>Ounces</option>
+          <option>Teaspoons</option>
+          <option>Tablespoons</option>
+          <option>Pounds</option>
+          <option>Each</option>
+        </select>
+      </div>
       <button type="submit" class="btn" name="ingredient_button">Add ingredient</button>
     </form>
   </div>
