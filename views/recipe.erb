@@ -33,7 +33,17 @@
     </div>
     <% end %>
     <% end %>
-    </div>
+    <hr>
+    <h4>Tags</h4>
+    <div class="recipe">
+    <% @recipe.tags.each do |tag| %>
+        <span><%= tag.name %> - <%= tag.category %>, </span>
+    <% end %>
   </div>
 
+
+    </div>
+    </div>
+
 <a class="btn-warning btn" href="/recipe/<%=@recipe.id %>/edit">Edit this recipe</a>
+</div>

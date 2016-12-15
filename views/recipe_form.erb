@@ -175,6 +175,23 @@
     <label for="cook_time">Enter the cook time</label>
     <input class="form-control" type="text" name="cook_time">
   </div>
+
+
+  <label>Select all the tags that apply:</label><br>
+  <% if @tags.any? %>
+    <% i =1  %>
+    <% @tags.each() do |tag| %>
+
+      <input type="checkbox" name="tags[]" value="<%= tag.id %>"> <%= tag.name %> - <%= tag.category %><br>
+      <% i += 1 %>
+  <% end %>
+  <% else %>
+    <p>There are no tags yet</p>
+  <% end %>
+
+
+
+  <hr>
     <button type="submit" class="btn-primary btn" name="recipe_button">Add Recipe</button>
   </form>
 <% end %>
