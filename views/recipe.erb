@@ -25,25 +25,25 @@
 
 
     <h3>Instructions</h3><hr>
-    <% @recipe.instructions.each do |instruction| %>
     <div class="recipe">
       <ol>
+    <% @recipe.instructions.each do |instruction| %>
         <li><p><%= instruction.description %></p></li>
-      </ol>
-    </div>
     <% end %>
+  </ol>
+</div>
     <% end %>
     <hr>
     <h4>Tags</h4>
     <div class="recipe">
     <% @recipe.tags.each do |tag| %>
-        <span><%= tag.name %> - <%= tag.category %>, </span>
+        <span><%= tag.name %> - <%= tag.category %></span>
     <% end %>
   </div>
 
 
     </div>
     </div>
+  </div>
 
 <a class="btn-warning btn" href="/recipe/<%=@recipe.id %>/edit">Edit this recipe</a>
-</div>
