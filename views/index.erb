@@ -9,6 +9,17 @@
   <% end %>
 <% end %>
 
+<% if @recipes and @ingredients %>
+  <form action="/find" method="post">
+      <select class="form-control">
+          <% @ingredients.each do |ingredient| %>
+            <optgroup label="<%= ingredient.food_group %>">
+              <option> <%= ingredient.name %></option>
+            </optgroup>
+          <% end %>
+      </select>
+  </form>
+<% end %>
 <a class="btn-primary btn" href="/recipe/new">Add a recipe</a>
 <a class="btn-primary btn" href="/tag/new">Add a tag</a>
 <a class="btn-danger btn" href="/clear">Clear Database</a>

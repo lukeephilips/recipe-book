@@ -28,4 +28,10 @@ describe(Ingredient) do
       expect(test_ingredient.save()).to(eq(false))
     end
   end
+  describe('.find') do
+    it('finds all recipes containing the ingredient') do
+      test_ingredient = Ingredient.new(:name => 'broccoli', :food_group => 'vegetable')
+      expect(test_ingredient.save()).to(eq(false))
+    end
+  end
 end
