@@ -58,16 +58,6 @@ patch '/recipe/:id/ingredients/:list_id/edit' do
   end
 end
 
-get '/recipe/:id/instructions/:instruction_id/edit' do
-  @recipe = Recipe.find(params['id'])
-  list = List.find(params['list_id'])
-  if list.update(:amount => params['edit_amount'], :unit => params['edit_units'])
-    redirect "/recipe/#{@recipe.id}/edit"
-  else
-    erb(:error)
-  end
-end
-
 get '/recipe/:id/instructions/:instruction_id/delete' do
   @recipe = Recipe.find(params['id'])
   instruction = Instruction.find(params['instruction_id'])
