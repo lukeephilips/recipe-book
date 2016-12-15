@@ -76,8 +76,11 @@
           </ul>
         <% end %>
         <form action="/recipe/<%= @recipe.id %>/instructions/new" method="post">
-        <input class="form-control" type="number" name="add_step" placeholder="Enter step number">
-        <input class="form-control" type="text" name="add_description" placeholder="Enter description">
+          <div class="input-group">
+            <input class="form-control" type="number" name="add_step" placeholder="Enter step number">
+            <span class="input-group-btn" style="width:0px;"></span>
+            <input class="form-control" type="text" name="add_description" placeholder="Enter description">
+          </div>
         <button type="submit" class="btn-primary btn">Add Instruction</button>
       </form>
     </div>

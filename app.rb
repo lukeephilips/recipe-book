@@ -55,7 +55,9 @@ end
 
 post '/recipe/:id/instructions/new' do
   @recipe = Recipe.find(params['id'])
-  @recipe.instructions.create(:step => params['add_step'], :description => params['add_description'])
+  if @recipe.instructions.create(:step => params['add_step'], :description => params['add_description'])
+    redirect "/recipe/#{@recipe.id}/edit"
+  end
   erb(:recipe_form)
 end
 
